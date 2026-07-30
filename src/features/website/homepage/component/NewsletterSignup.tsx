@@ -2,6 +2,7 @@
 
 import { Mail } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { api } from "../../../../lib/api";
 import { toast } from "sonner";
 
@@ -37,7 +38,13 @@ export function NewsletterSignup() {
       <div className="absolute inset-y-0 left-0 hidden w-[42%] bg-[linear-gradient(165deg,transparent_24%,rgba(255,255,255,0.4)_24%,rgba(255,255,255,0.4)_76%,transparent_76%)] lg:block" />
       <div className="absolute inset-y-0 right-0 hidden w-[42%] bg-[linear-gradient(345deg,transparent_24%,rgba(255,255,255,0.4)_24%,rgba(255,255,255,0.4)_76%,transparent_76%)] lg:block" />
       <div className="relative mx-auto max-w-[1440px] text-center">
-        <div className="mx-auto flex max-w-[676px] flex-col items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto flex max-w-[676px] flex-col items-center"
+        >
           <Mail className="mb-4 size-12 text-[var(--home-green)]" />
           <h2 className="text-balance text-[38px] leading-[1.2] font-semibold text-[var(--home-green-deep)] sm:text-[48px]">
             Join The Wonder Community
@@ -66,7 +73,7 @@ export function NewsletterSignup() {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex h-[52px] w-full items-center justify-center border border-[var(--home-gold)] bg-[var(--home-gold)] px-6 text-[15px] font-bold uppercase tracking-[0.64px] text-white transition hover:bg-transparent hover:text-[var(--home-gold)] [font-family:var(--font-display)] disabled:opacity-50 sm:h-[58px] sm:min-w-[218px] sm:w-auto sm:px-8 sm:text-[16px]"
+              className="inline-flex h-[52px] w-full items-center justify-center border border-[var(--home-gold)] bg-[var(--home-gold)] px-6 text-[15px] font-bold uppercase tracking-[0.64px] text-white transition duration-300 hover:bg-transparent hover:text-[var(--home-gold)] hover:scale-[1.03] active:scale-[0.97] [font-family:var(--font-display)] disabled:opacity-50 sm:h-[58px] sm:min-w-[218px] sm:w-auto sm:px-8 sm:text-[16px]"
             >
               {loading ? "Subscribing..." : "Subscribe Now"}
             </button>
@@ -75,7 +82,7 @@ export function NewsletterSignup() {
             By subscribing, you agree to our Terms of Service and Privacy
             Policy.
           </p>
-        </div>
+        </motion.div>
       </div>
     </HomeSection>
   );

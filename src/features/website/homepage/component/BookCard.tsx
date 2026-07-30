@@ -7,7 +7,7 @@ import type { BookItem } from "../types/homepage.types";
 
 export function BookCard({ book }: { book: BookItem }) {
   return (
-    <article className="flex h-full flex-col border border-[var(--home-border)] bg-white p-4 shadow-[0_4px_18px_rgba(27,46,36,0.04)] transition-transform duration-300 hover:-translate-y-1">
+    <article className="flex h-full flex-col border border-[var(--home-border)] bg-white p-4 shadow-[0_4px_20px_rgba(27,46,36,0.04)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_16px_36px_rgba(27,46,36,0.08)]">
       <Link
         href={book.href}
         className="group relative mb-2 block h-[320px] overflow-hidden bg-[var(--home-paper)]"
@@ -17,10 +17,10 @@ export function BookCard({ book }: { book: BookItem }) {
           alt={book.imageAlt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-          className="object-cover transition duration-500 group-hover:scale-[1.02]"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
         />
         {book.badge ? (
-          <span className="absolute left-2 top-2 inline-flex min-h-6 items-center bg-[var(--home-gold)] px-2 text-[12px] uppercase tracking-[0.6px] text-[var(--home-ink)]">
+          <span className="absolute left-2 top-2 inline-flex min-h-6 items-center bg-[var(--home-gold)] px-2 text-[12px] uppercase tracking-[0.6px] text-[var(--home-ink)] font-bold transition-all duration-300 group-hover:bg-[var(--home-green)] group-hover:text-white">
             {book.badge}
           </span>
         ) : null}

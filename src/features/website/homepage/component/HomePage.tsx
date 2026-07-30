@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
   AuthorCard,
   BookCard,
@@ -132,51 +135,90 @@ export default function HomePage({
     <main className="bg-[var(--home-surface)] text-[var(--home-green-deep)]">
       <HomeHeader items={[]} />
       <HomeHero />
-      <StatsBar items={stats} />
 
-      <HomeSection id="shop" className="bg-[var(--home-paper)]">
-        <SectionHeading
-          title="Best Sellers"
-          subtitle="The titles our community loves most."
-          ctaHref="/categories?view=shop"
-        />
-        <BookStrip books={bestSellers} />
-      </HomeSection>
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <StatsBar items={stats} />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <HomeSection id="shop" className="bg-[var(--home-paper)]">
+          <SectionHeading
+            title="Best Sellers"
+            subtitle="The titles our community loves most."
+            ctaHref="/categories?view=shop"
+          />
+          <BookStrip books={bestSellers} />
+        </HomeSection>
+      </motion.div>
 
       <FoundingProgram benefits={foundingBenefits} />
 
-      <HomeSection id="categories" className="bg-[var(--home-paper)]">
-        <SectionHeading
-          title="Featured Books"
-          ctaHref="/categories?view=shop"
-        />
-        <BookStrip books={featuredBooks} />
-      </HomeSection>
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <HomeSection id="categories" className="bg-[var(--home-paper)]">
+          <SectionHeading
+            title="Featured Books"
+            ctaHref="/categories?view=shop"
+          />
+          <BookStrip books={featuredBooks} />
+        </HomeSection>
+      </motion.div>
 
       <FeaturedBanner />
 
-      <HomeSection className="bg-[var(--home-paper)]">
-        <div className="text-center">
-          <h2 className="text-[38px] leading-[1.2] font-semibold text-[#18233a] sm:text-[52px]">
-            What Our Readers Say
-          </h2>
-        </div>
-        <div className="mt-12 grid gap-5 xl:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} />
-          ))}
-        </div>
-      </HomeSection>
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <HomeSection className="bg-[var(--home-paper)]">
+          <div className="text-center">
+            <h2 className="text-[38px] leading-[1.2] font-semibold text-[#18233a] sm:text-[52px]">
+              What Our Readers Say
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-5 xl:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard
+                key={testimonial.name}
+                testimonial={testimonial}
+              />
+            ))}
+          </div>
+        </HomeSection>
+      </motion.div>
 
-      <HomeSection id="authors" className="bg-[var(--home-surface)]">
-        <div className="text-center">
-          <h2 className="text-[38px] leading-10 font-semibold text-[var(--home-green-deep)] sm:text-[54px]">
-            Meet Future Founding Authors
-          </h2>
-          <div className="mx-auto mt-5 h-1 w-12 bg-[var(--home-gold)]" />
-        </div>
-        <AuthorStrip authors={authors} />
-      </HomeSection>
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <HomeSection id="authors" className="bg-[var(--home-surface)]">
+          <div className="text-center">
+            <h2 className="text-[38px] leading-10 font-semibold text-[var(--home-green-deep)] sm:text-[54px]">
+              Meet Future Founding Authors
+            </h2>
+            <div className="mx-auto mt-5 h-1 w-12 bg-[var(--home-gold)]" />
+          </div>
+          <AuthorStrip authors={authors} />
+        </HomeSection>
+      </motion.div>
 
       <NewsletterSignup />
       <HomeFooter columns={footerColumns} />

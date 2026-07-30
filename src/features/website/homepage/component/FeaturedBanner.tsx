@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { HomeCta } from "./primitives";
 
@@ -15,7 +18,13 @@ export function FeaturedBanner() {
         />
       </div>
       <div className="absolute inset-0 bg-[rgba(27,46,36,0.24)]" />
-      <div className="relative mx-auto flex max-w-[1376px] flex-col items-center gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="relative mx-auto flex max-w-[1376px] flex-col items-center gap-6"
+      >
         <p className="text-[18px] font-bold uppercase tracking-[0.72px] text-[var(--home-gold)] sm:text-[20px]">
           Exclusive Series
         </p>
@@ -27,10 +36,14 @@ export function FeaturedBanner() {
           growth, and transformation. Bound in premium materials for the
           discerning reader.
         </p>
-        <HomeCta href="#shop" invert className="min-w-[198px]">
+        <HomeCta
+          href="/categories?view=shop"
+          invert
+          className="min-w-[198px] hover:scale-[1.03] active:scale-[0.97] transition-transform duration-200"
+        >
           Shop Collection
         </HomeCta>
-      </div>
+      </motion.div>
     </section>
   );
 }
